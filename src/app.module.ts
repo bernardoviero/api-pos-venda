@@ -11,11 +11,11 @@ import { QueueModule } from './queue/queue.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'postgres',
-      port: 5432,
-      username: 'admin',
-      password: 'admin',
-      database: 'atendimento',
+      host: process.env.DB_HOST ?? 'localhost',
+      port: Number(process.env.DB_PORT ?? 5432),
+      username: process.env.DB_USERNAME ?? 'admin',
+      password: process.env.DB_PASSWORD ?? 'admin',
+      database: process.env.DB_NAME ?? 'atendimento',
       autoLoadEntities: true,
       synchronize: true,
     }),

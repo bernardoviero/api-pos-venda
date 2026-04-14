@@ -21,7 +21,8 @@ export class QueueService {
     });
   }
 
-  updateStatus(id: number, status: QueueStatus) {
-    return this.repo.update(id, { status });
+  async updateStatus(id: number, status: QueueStatus) {
+    await this.repo.update(id, { status });
+    return this.repo.findOneBy({ id });
   }
 }

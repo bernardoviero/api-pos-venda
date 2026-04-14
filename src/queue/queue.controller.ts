@@ -1,4 +1,12 @@
-import { Controller, Post, Get, Patch, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Patch,
+  Body,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { QueueService } from './queue.service';
 import { QueueStatus } from './queue.entity';
 import { CreateQueueDto } from './create-queue.dto';
@@ -19,7 +27,7 @@ export class QueueController {
 
   @Patch(':id')
   update(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body('status') status: QueueStatus,
   ) {
     return this.service.updateStatus(id, status);
