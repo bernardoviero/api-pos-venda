@@ -1,18 +1,12 @@
-FROM node:18
+FROM node:20
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 COPY . .
 
-#DEBUG:mostra arquivos
-RUN ls -la
-
 RUN npm run build
-
-#DEBUG:verifica dist
-RUN ls -la dist
 
 CMD ["node", "dist/main.js"]

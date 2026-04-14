@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:14
@@ -19,6 +17,11 @@ services:
     container_name: atendimento_backend
     ports:
       - "3000:3000"
+    environment:
+      JWT_SECRET: super-secret-jwt-key
+      JWT_EXPIRES_IN: 1h
+      AUTH_USERNAME: admin
+      AUTH_PASSWORD: admin
     depends_on:
       - postgres
 
